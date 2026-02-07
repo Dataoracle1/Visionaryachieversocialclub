@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-vasc-navy rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-vasc-blue;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base body styles */
+body {
+  @apply bg-white text-gray-900;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation classes */
+.notification-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.notification-exit {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+.modal-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-exit {
+  animation: fadeOut 0.2s ease-in;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Gradient background utility */
+.gradient-bg {
+  background: linear-gradient(to bottom right, #F39C12, #d97706);
+}
+
+/* Custom button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-vasc-orange text-white px-8 py-3 rounded-xl font-semibold hover:bg-vasc-gold transition-all shadow-xl hover:shadow-2xl;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-vasc-orange text-vasc-navy px-8 py-3 rounded-xl font-semibold hover:bg-vasc-orange hover:text-white transition-all shadow-md hover:shadow-xl;
+  }
+
+  .btn-navy {
+    @apply bg-vasc-navy text-white px-8 py-3 rounded-xl font-semibold hover:bg-vasc-blue transition-all shadow-xl hover:shadow-2xl;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-vasc-orange focus:border-transparent;
+  }
+}
+
+/* Hero section background effects */
+.blob-back {
+  width: 780px;
+  height: 780px;
+  background: radial-gradient(circle at 30% 30%, rgba(243, 156, 18, 0.4), rgba(255, 227, 182, 0.3));
+  filter: blur(100px);
+  position: absolute;
+  border-radius: 45%;
+  animation: morph-back 28s infinite alternate ease-in-out;
+  opacity: 0.75;
+}
+
+@keyframes morph-back {
+  0% {
+    border-radius: 45% 55% 40% 60%;
+    transform: translate(-100px, -80px) scale(1.1);
+  }
+
+  50% {
+    border-radius: 60% 40% 55% 45%;
+    transform: translate(120px, 40px) scale(1.25);
+  }
+
+  100% {
+    border-radius: 50% 50% 60% 40%;
+    transform: translate(-60px, 120px) scale(1.05);
+  }
+}
+
+.blob-front {
+  width: 420px;
+  height: 420px;
+  background: linear-gradient(135deg, rgba(255, 204, 120, 0.3), rgba(255, 240, 210, 0.2));
+  backdrop-filter: blur(35px) saturate(180%);
+  -webkit-backdrop-filter: blur(35px) saturate(180%);
+  border-radius: 45%;
+  opacity: 0.9;
+  box-shadow: 0 0 50px rgba(255, 180, 100, 0.25);
+  animation: morph-front 18s infinite ease-in-out alternate;
+}
+
+@keyframes morph-front {
+  0% {
+    border-radius: 55% 45% 60% 40%;
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    border-radius: 40% 60% 45% 55%;
+    transform: translate(40px, -40px) scale(1.15);
+  }
+
+  100% {
+    border-radius: 50% 50% 40% 60%;
+    transform: translate(-30px, 30px) scale(0.95);
+  }
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid rgba(243, 156, 18, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #F39C12;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-vasc-orange ring-offset-2;
+}
