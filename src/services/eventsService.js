@@ -51,10 +51,15 @@ export const eventsService = {
     }
   },
 
-  // Register for event
-  registerForEvent: async (eventId) => {
+  // RSVP for event - UPDATED TO MATCH YOUR BACKEND
+  registerForEvent: async (eventId, memberData) => {
     try {
-      const response = await api.post(`/events/${eventId}/register`);
+      const response = await api.post('/events/rsvp', {
+        eventId,
+        name: memberData.name,
+        email: memberData.email,
+        memberId: memberData.memberId
+      });
       return response.data;
     } catch (error) {
       throw error.response?.data || error;
